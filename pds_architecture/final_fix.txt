@@ -1,0 +1,81 @@
+Question 1.1.1
+
+albertwang
+1. "ADS only contains information about "Import and Persistence" module..." 
+fixed
+
+3. Web Services document is too shallow, the requirement from contest page is "detailing endpoints with their request/response, and sample calls"
+The Web Service is developed with Apache CXF JAX-WS, so it daeals with beans, not with the SOAP requests and endpoints. CXF will not deal with xml or endpoints.
+
+4. "For Import and Persistence Module, the following discrepencies are noticed"
+TCUML was updated with the needed details.
+
+5. "The following specific artifacts are not covered in Frontend module:"
+Helper is added, the pages are not required as confirmed on forum.
+
+6. "The following specific artifacts are not covered in WebService Client module:"
+All generated classes are shown.
+
+zsudraco
+1. "For the PlanetaryDataSystemService.js:"
+Added.
+
+2. " The ADS 1.1 should discuss the high level workflow of:"
+ADS is updated.
+
+3. "ADS 1.2.2 and 1.4.1 should add new libraries, e.g. Apache CXF, cxf-utils.js."
+Added. cxf-utils.js is from Apache CFX js part.
+
+4. " ADS 1.3.1, 1.3.2, 1.3.3, 1.3.5 should also discuss about the front end and web service."
+Added.
+
+LOY
+1. "Not all classes under "pds_projects\import_and_persistence\src\java\main\gov\nasa\pds\processors\impl" are shown in class diagram"
+TCUML is updated.
+
+2. "There're serveral classes defined in gov.nasa.pds.services.impl are not shown in class diagram."
+TCUML is updated.
+==========================================================================================================
+
+Question 1.1.2 
+
+"The "JavaScript Client Get Instrument Sequence Diagram" is messy, this SD should also show the interaction to the service side web service."
+Added.
+
+==========================================================================================================
+
+Question 1.1.3
+
+LOY
+All is fixed except the static fields.They are not required to be shown as they are low level constants used in methods.
+
+==========================================================================================================
+
+Question 1.2.2-Question 1.3.4
+All is fixed.
+==========================================================================================================
+
+Question 2.1.4
+1. "Deployment concerns about frontend module, web services and web services client are not documented.	"
+The reference to the deployment guides is added to ADS as the guides provide full description.
+==========================================================================================================
+
+
+Question 3.1.1
+
+albertwang
+
+1. "the submitted two TCUML files overlap each other, which is confusing"
+Fixed.
+
+LOY
+All is fixed, docs are added to TCUML and ADS.
+
+==========================================================================================================
+
+
+Question 3.2.2, Question 3.2.3 
+All is fixed.
+
+
+

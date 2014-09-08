@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx/spring-tx.xsd 
+                        http://www.springframework.org/schema/aop 
+                        http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:property-placeholder location="classpath:application.properties"/>
+    <context:annotation-config/>
+
+    <bean id="logger" class="com.topcoder.util.log.log4j.Log4jLog">
+        <constructor-arg index="0" value="gov.nasa.pds"/>
+        <constructor-arg index="1" value="false"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="conversionPersistence" class="gov.nasa.pds.services.impl.JDBCConversionPersistence">
+        <property name="logger" ref="logger" />
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+        <property name="defaultTargetType" value="${conversionPersistence.defaultTargetType}" />
+        <property name="tempFileDirectory" value="${conversionPersistence.tempFileDirectory}" />
+    </bean>
+
+    <bean id="LROCImportProcessor" class="gov.nasa.pds.processors.impl.LROCImportProcessorImpl">
+        <property name="logger" ref="logger" />
+        <property name="requestUrl" value="http://oderest.rsl.wustl.edu/live/?query=products&amp;results=mb&amp;limit=3&amp;offset=0&amp;target=Mars&amp;ihid=MRO&amp;iid=HiRISE&amp;pt=rdrv11&amp;output=JSON"/>
+        <property name="conversionPersistence" ref="conversionPersistence" />
+    </bean>
+    <bean id="KernelImportProcessor" class="gov.nasa.pds.processors.impl.KernelImportProcessorImpl">
+        <property name="logger" ref="logger" />
+        <property name="saveDirectory" value="${KernelImportProcessor.saveDirectory}" />
+        <property name="serverName" value="isisdist.astrogeology.usgs.gov" />
+    </bean>
+</beans>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="NASA_PDS_WS">
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/lib" source-path="/lib"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/config"/>
+        <property name="java-output-path" value="/NASA_PDS_WS/build/classes"/>
+        <property name="context-root" value="nasa_pds_ws"/>
+    </wb-module>
+</project-modules>

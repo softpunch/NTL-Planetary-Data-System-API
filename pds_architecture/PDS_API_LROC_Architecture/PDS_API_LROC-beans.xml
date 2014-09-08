@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx/spring-tx.xsd 
+                        http://www.springframework.org/schema/aop 
+                        http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+    <context:annotation-config/>
+
+    <bean id="logger" class="com.topcoder.util.log.log4j.Log4jLog">
+        <constructor-arg index="0" value="gov.nasa.pds"/>
+        <constructor-arg index="1" value="false"/>
+    </bean>
+
+    <bean id="LORCImportProcessor" class="gov.nasa.pds.processors.impl.LORCImportProcessorImpl">
+        <property name="logger" ref="logger" />
+        <property name="requestUrl" value="http://oderest.rsl.wustl.edu/live/?query=products&results=mb&limit=3&offset=0&target=Mars&ihid=MRO&iid=HiRISE&pt=rdrv11&output=JSON&jsonp=?"/>
+        <property name="conversionPersistence" ref="conversionPersistence" />
+    </bean>
+    <bean id="KernelsImportProcessor" class="gov.nasa.pds.processors.impl.KernelsImportProcessorImpl">
+        <property name="logger" ref="logger" />
+        <property name="saveDirectory" ref="/home/user/data" />
+    </bean>
+</beans>
