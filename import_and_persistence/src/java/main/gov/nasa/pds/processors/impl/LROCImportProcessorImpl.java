@@ -37,6 +37,7 @@ import com.topcoder.json.object.JSONArray;
 import com.topcoder.json.object.JSONDataAccessTypeException;
 import com.topcoder.json.object.JSONInvalidKeyException;
 import com.topcoder.json.object.JSONObject;
+import com.topcoder.json.object.JSONRuntimeException;
 import com.topcoder.json.object.io.JSONDecoder;
 import com.topcoder.json.object.io.JSONDecodingException;
 import com.topcoder.json.object.io.StandardJSONDecoder;
@@ -264,6 +265,40 @@ public class LROCImportProcessorImpl implements LROCImportProcessor, Initializin
 
     /**
      * <p>
+     * Delegates to the internal helper method that will retrieve product metadata and image data with specified
+     * limited request URL.
+     * </p>
+     *
+     * @param subRequestUrl
+     *            the URL that has limit and offset parameter attached
+     * @throws DataSetProcessingException
+     *             if there is any error while importing LROC data
+     */
+    private void importMapDataWithLimitOffset(String subRequestUrl, String cameraType)
+            throws DataSetProcessingException {
+        boolean ok = false;
+     
+        while (!ok) {
+            try {
+                logger.log(Level.INFO, "Fetching data from ODE: " + subRequestUrl);
+                
+                doImportMapDataWithLimitOffset(subRequestUrl, cameraType);
+                
+                ok = true;
+            } catch (JSONRuntimeException e) {
+                // sometimes the ODE service is offline. When that happens we won't be able to parse
+                // the response. Instead of blowing up, just keep trying until the call succeeds!
+                logger.log(Level.WARN, "Call to ODE failed for URL: " + subRequestUrl
+                        + " -- trying again immediately");
+            } catch (RuntimeException e) {
+                logger.log(Level.ERROR, "Exception while fetching data from ODE", e);
+                throw e;
+            }
+        }
+    }
+
+    /**
+     * <p>
      * The internal helper method will retrieve product metadata and image data with specified
      * limited request URL.
      * </p>
@@ -273,7 +308,8 @@ public class LROCImportProcessorImpl implements LROCImportProcessor, Initializin
      * @throws DataSetProcessingException
      *             if there is any error while importing LROC data
      */
-    private void importMapDataWithLimitOffset(String subRequestUrl, String cameraType) throws DataSetProcessingException {
+    private void doImportMapDataWithLimitOffset(String subRequestUrl, String cameraType)
+            throws DataSetProcessingException {
         String jsonStr = getJsonString(subRequestUrl);
 
         // Import map data

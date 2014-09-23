@@ -118,5 +118,20 @@ public interface DataSetService {
     PagedResults<EntityInfo> searchMapImagesByCriteria(SearchCriteria criteria, Page page)
             throws DataSetProcessingException;
 
+    /**
+     * Returns the paths to the given {@link MapImage}s
+     * @param mapImageEntityInfos the {@link EntityInfo}s representing our MapImages
+     * @return the paths
+     */
     List<String> getMapImagePaths(List<EntityInfo> mapImageEntityInfos);
+    
+    /**
+     * @return all the product types in the database.
+     */
+    List<String> getAllProductTypes();
+    
+    /**
+     * @return all the camera specs in the database.
+     */
+    List<String> getAllCameraSpecs();
 }

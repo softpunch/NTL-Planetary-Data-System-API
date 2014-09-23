@@ -110,6 +110,16 @@ public class JDBCDataSetService implements DataSetService, InitializingBean {
      * Used to search for up to 10 map image paths.
      */
     private static final String GET_MAP_IMAGE_PATH_SQL = "select image_path from map_image where id in (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    /**
+     * Used to fetch all the product types we have in the map_image table.
+     */
+    private static final String GET_ALL_PROCUCT_TYPES = "select distinct product_type from map_image";
+    
+    /**
+     * Used to fetch all the camera specs we have in the map_image table.
+     */
+    private static final String GET_ALL_CAMERA_SPECS = "select distinct camera_spec from map_image";
 
     /**
      * Represents the class name.
@@ -1550,6 +1560,12 @@ public class JDBCDataSetService implements DataSetService, InitializingBean {
             if (criteria.getCameraSpecification() != null) {
                 whereSqlAndArgs.append(" and MI.camera_spec = ?", criteria.getCameraSpecification());
             }
+            if (criteria.getCollectionDateMin() != null) {
+                whereSqlAndArgs.append(" and MI.date >= ?", criteria.getCollectionDateMin());
+            }
+            if (criteria.getCollectionDateMax() != null) {
+                whereSqlAndArgs.append(" and MI.date <= ?", criteria.getCollectionDateMax());
+            }
         }
         return whereSqlAndArgs;
     }
@@ -1694,4 +1710,19 @@ public class JDBCDataSetService implements DataSetService, InitializingBean {
         }
     }
 
+    @Override
+    public List<String> getAllProductTypes() {
+        return jdbcTemplate.query(GET_ALL_PROCUCT_TYPES, new RowMapper<String>(){
+            public String mapRow(ResultSet rs, int arg1) throws SQLException {
+                return rs.getString(1);
+            }});
+    }
+    
+    @Override
+    public List<String> getAllCameraSpecs() {
+        return jdbcTemplate.query(GET_ALL_CAMERA_SPECS, new RowMapper<String>(){
+            public String mapRow(ResultSet rs, int arg1) throws SQLException {
+                return rs.getString(1);
+            }});
+    }
 }

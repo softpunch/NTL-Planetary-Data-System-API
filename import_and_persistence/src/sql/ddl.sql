@@ -1245,6 +1245,8 @@ CREATE TABLE IF NOT EXISTS `map_image` (
   `product_type` VARCHAR(256) NOT NULL ,
   `camera_spec` VARCHAR(256) NOT NULL ,
   PRIMARY KEY (`id`) ,
+  INDEX `fk_map_image_product_type` (`product_type` ASC) ,
+  INDEX `fk_map_image_camera_spec` (`camera_spec` ASC) ,
   CONSTRAINT `fk_mission_map_image`
     FOREIGN KEY (`mission_id` )
     REFERENCES `mission` (`id` )

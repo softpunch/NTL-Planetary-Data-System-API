@@ -30,8 +30,15 @@ import com.topcoder.json.object.JSONObject;
  * <li>Add {@link #productType}, {@link #cameraSpecification}</li>
  * </ol>
  * </p>
+ * 
+ * <p>
+ * Version 1.3 changes [NASA LROC Demo and Backend Improvement]:
+ * <ol>
+ * <li>Add {@link #collectionDateMin} and {@link #collectionDateMax}</li>
+ * </ol>
+ * </p>
  * @author TCSASSEMBLER, fivestarwy, caoweiquan322, schmoel
- * @version 1.2
+ * @version 1.3
  */
 public class SearchCriteria {
     /**
@@ -67,6 +74,12 @@ public class SearchCriteria {
      * Represents the stopDate. It is managed with a getter and setter. It may have any value. It is fully mutable.
      */
     private Date stopDate;
+    
+    /** The minimum collection date for this criteria. */
+    private Date collectionDateMin;
+    
+    /** The maximum collection date for this criteria. */
+    private Date collectionDateMax;
     
     private String productType;
     
@@ -489,6 +502,36 @@ public class SearchCriteria {
         this.cameraSpecification = cameraType;
     }
 
+    /**
+     * @return the minimum collection date
+     */
+    public Date getCollectionDateMin() {
+        return collectionDateMin;
+    }
+    
+    /**
+     * Sets the minimum collection date.
+     * @param minCollectionDate the date
+     */
+    public void setCollectionDateMin(Date minCollectionDate) {
+        this.collectionDateMin = minCollectionDate;
+    }
+    
+    /**
+     * @return the maximum collection date
+     */
+    public Date getCollectionDateMax() {
+        return collectionDateMax;
+    }
+    
+    /**
+     * Sets the maximum collection date.
+     * @param maxCollectionDate the date
+     */
+    public void setCollectionDateMax(Date maxCollectionDate) {
+        this.collectionDateMax = maxCollectionDate;
+    }
+    
     /**
      * Gets the JSONObject instance.
      *
