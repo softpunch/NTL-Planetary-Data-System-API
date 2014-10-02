@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dip"
+    android:stretchColumns="2" >
+
+    <TableRow android:background="@color/table_first" >
+
+        <TextView
+            android:layout_column="1"
+            android:text="Name:" />
+
+        <TextView android:id="@+id/missionName" />
+    </TableRow>
+
+    <FrameLayout style="@style/theme_line_style" />
+
+    <TableRow android:background="@color/table_second" >
+
+        <TextView
+            android:layout_column="1"
+            android:text="Started at:" />
+
+        <TextView android:id="@+id/missionStartDate" />
+    </TableRow>
+
+    <FrameLayout style="@style/theme_line_style" />
+
+    <TableRow android:background="@color/table_first" >
+
+        <TextView
+            android:layout_column="1"
+            android:text="Ended at:" />
+
+        <TextView android:id="@+id/missionEndDate" />
+    </TableRow>
+
+    <FrameLayout style="@style/theme_line_style" />
+
+    <TableRow android:background="@color/table_second" >
+
+        <TextView
+            android:layout_column="1"
+            android:text="Duration:" />
+
+        <TextView android:id="@+id/missionDuration" />
+    </TableRow>
+
+    <FrameLayout style="@style/theme_line_style" />
+
+</TableLayout>

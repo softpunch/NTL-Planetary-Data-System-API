@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/browserFilterGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
+
+        <Spinner
+            android:id="@+id/browserSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:entries="@array/entities_type" />
+
+        <LinearLayout
+            android:id="@+id/browserRestrictionGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/browserSpinner"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/browserRestrictionGroup0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/browserRestrictionGroup1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/browserSearchGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/browserRestrictionGroup" >
+
+            <CheckBox
+                android:id="@+id/browserCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:checked="false" />
+
+            <ImageView
+                android:id="@+id/browserSearchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:onClick="onSearchButtonClick"
+                android:src="@drawable/search_text" />
+
+            <EditText
+                android:id="@+id/browserSearchText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_toLeftOf="@id/browserSearchButton"
+                android:layout_toRightOf="@id/browserCheckBox"
+                android:hint="Enter text here to search" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/browserSeparatorTop"
+        style="@style/theme_line_style"
+        android:layout_below="@id/browserFilterGroup" />
+
+    <RelativeLayout
+        android:id="@+id/browserPageNavigationGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="2dip" >
+
+        <ImageView
+            android:id="@+id/browserPreviousButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="3dip"
+            android:onClick="onPreviousButtonClick"
+            android:src="@drawable/prev_page" />
+
+        <ImageView
+            android:id="@+id/browserNextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="3dip"
+            android:onClick="onNextButtonClick"
+            android:src="@drawable/next_page" />
+
+        <TextView
+            android:id="@+id/browserPageCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/browserNextButton"
+            android:layout_toRightOf="@id/browserPreviousButton"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/browserSeparatorBottom"
+        style="@style/theme_line_style"
+        android:layout_above="@id/browserPageNavigationGroup" />
+
+    <ViewFlipper
+        android:id="@+id/browserFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/browserSeparatorBottom"
+        android:layout_below="@id/browserSeparatorTop" >
+    </ViewFlipper>
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center"
+    android:layout_margin="2dip"
+    android:background="@drawable/shape_round_border"
+    android:paddingTop="3dip" >
+
+    <ImageView
+        android:id="@+id/restrictionObjectIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/restrictionCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="3dip"
+        android:ellipsize="end"
+        android:maxEms="8"
+        android:singleLine="true" />
+
+    <ImageView
+        android:id="@+id/restrictionDeleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:onClick="onRestrictionDeleteButtonClick"
+        android:src="@drawable/remove"
+        android:visibility="gone" />
+
+</LinearLayout>
